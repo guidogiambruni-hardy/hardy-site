@@ -1,0 +1,217 @@
+/* ── HARDY MOBILE CSS ─────────────────────────────────────────────── */
+
+/* CRÍTICO: evita el zoom involuntario en mobile por overflow horizontal */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Cualquier elemento NO debe sobrepasar el viewport */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Clases de utilidad */
+.hardy-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
+.hardy-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.hardy-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.hardy-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.hardy-product-overlay { opacity: 0; transition: opacity 0.3s; }
+.hardy-product-card:hover .hardy-product-overlay { opacity: 1; }
+
+/* ── TABLET (≤ 900px) ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hardy-grid-5 { grid-template-columns: 1fr 1fr !important; }
+  .hardy-grid-4 { grid-template-columns: 1fr 1fr !important; }
+  .hardy-grid-3 { grid-template-columns: 1fr 1fr !important; }
+  .hardy-grid-2 { grid-template-columns: 1fr !important; }
+  .hardy-features-bar { grid-template-columns: 1fr 1fr !important; }
+  .hardy-formato-grid { grid-template-columns: 1fr !important; }
+
+  /* Footer: 2 col en tablet */
+  .hardy-footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+
+  /* Nav */
+  .hardy-nav-links { display: none !important; }
+  .hardy-comprar-btn { display: none !important; }
+  .hardy-hamburger { display: block !important; }
+  #hardy-mobile-menu.open { display: flex !important; }
+}
+
+/* ── MOBILE (≤ 600px) ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  /* Grillas */
+  .hardy-grid-5 { grid-template-columns: 1fr 1fr !important; }
+  .hardy-grid-4 { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+  .hardy-grid-3 { grid-template-columns: 1fr !important; }
+  .hardy-grid-2 { grid-template-columns: 1fr !important; }
+  .hardy-features-bar { grid-template-columns: 1fr 1fr !important; }
+  .hardy-formato-grid { grid-template-columns: 1fr !important; }
+
+  /* Padding */
+  .hardy-section { padding-left: 16px !important; padding-right: 16px !important; }
+
+  /* Mostrar overlay en mobile siempre */
+  .hardy-product-overlay { opacity: 1 !important; }
+
+  /* Hero */
+  .hardy-hero-inner { padding: 0 20px !important; max-width: 100% !important; }
+  .hardy-hero { min-height: 100svh !important; }
+  .hardy-hero::before { background: rgba(15,15,15,0.92) !important; }
+  .hardy-hero::after { display: none !important; }
+  .hardy-hero-product-img { display: none !important; }
+
+  /* Filosofía: apilar en mobile */
+  .hardy-filosofia-layout { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* Modal full screen */
+  .hardy-modal-inner { 
+    grid-template-columns: 1fr !important; 
+    max-height: 100dvh !important;
+    overflow-y: auto !important;
+    border-radius: 0 !important;
+  }
+  .hardy-modal-img-col { display: none !important; }
+  .hardy-modal-thumbs { display: flex !important; }
+
+  /* Cards producto */
+  .hardy-product-card { font-size: 14px !important; }
+  .hardy-product-card h3, .hardy-product-card .hardy-product-name { 
+    font-size: 15px !important; 
+    line-height: 1.2 !important;
+  }
+  .hardy-product-price { font-size: 18px !important; }
+
+  /* Tabs tienda */
+  .hardy-tabs button { font-size: 11px !important; padding: 10px 16px !important; }
+
+  /* Beneficios mayoristas: 3 col → 1 col */
+  .hardy-benefits-grid { grid-template-columns: 1fr !important; }
+
+  /* Texto general */
+  h1 { font-size: clamp(36px, 9vw, 60px) !important; }
+  h2 { font-size: clamp(26px, 7vw, 40px) !important; }
+}
+
+/* ── FIXES ADICIONALES MOBILE ─────────────────────────────────────── */
+@media (max-width: 600px) {
+  /* Product cards: texto completo sin corte */
+  .hardy-product-card { min-width: 0; word-break: break-word; }
+  .hardy-product-card .hardy-product-name { 
+    font-size: 13px !important; 
+    line-height: 1.25 !important;
+  }
+  
+  /* Grid 4 col en home y tienda → 2 col con espacio */
+  .hardy-grid-4 { 
+    grid-template-columns: 1fr 1fr !important; 
+    gap: 10px !important; 
+  }
+  
+  /* Precio en cards no se corta */
+  .hardy-product-price { 
+    font-size: 16px !important; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+  }
+
+  /* Sección "Comprá según tu necesidad" → apilado */  
+  .hardy-formato-grid { grid-template-columns: 1fr !important; }
+
+  /* Barra de características (100% natural, etc) → 1 col */
+  .hardy-features-bar { grid-template-columns: 1fr !important; }
+  
+  /* Scroll horizontal para secciones que no se pueden apilar fácilmente */
+  .hardy-scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  
+  /* Beneficios mayoristas: 1 col */
+  .hardy-benefits-grid { 
+    grid-template-columns: 1fr !important; 
+    gap: 1px !important;
+  }
+  
+  /* Tienda: thumbnails más pequeños */
+  .hardy-thumbnail { width: 42px !important; height: 42px !important; }
+  
+  /* Footer: 1 col en mobile */
+  .hardy-footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  
+  /* Quitar padding excesivo en secciones */
+  section { padding-top: 48px !important; padding-bottom: 48px !important; }
+  section.hardy-section { padding-left: 16px !important; padding-right: 16px !important; }
+}
+
+/* ── PÁGINAS INTERNAS ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  /* Reducir padding de secciones hero */
+  section[style*="padding: '100px"] { padding: 60px 20px 48px !important; }
+  section[style*="padding: '80px 40px'"] { padding: 48px 20px !important; }
+  section[style*="padding: '60px 40px'"] { padding: 40px 20px !important; }
+  
+  /* El botón AGREGAR no debe cortar el texto */
+  button[style*="padding: '10px 16px'"] { padding: 10px 12px !important; font-size: 9px !important; }
+  
+  /* Precios: nunca partir en dos líneas */
+  .hardy-product-price, [style*="whiteSpace: 'nowrap'"] { white-space: nowrap !important; }
+}
+
+/* ── RECETAS ────────────────────────────────────────────────────── */
+/* Desktop: 3 col → Tablet: 2 col → Mobile: 1 col */
+.hardy-recetas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 900px) {
+  .hardy-recetas-grid { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+}
+@media (max-width: 600px) {
+  .hardy-recetas-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  /* Cards de receta más compactas */
+  .receta-card [style*="padding: '16px'"] { padding: 14px !important; }
+  .receta-card h3 { font-size: 16px !important; }
+  /* Ocultar chips de productos en mobile (info secundaria) */
+  .receta-card [style*="flexWrap: 'wrap'"][style*="gap: '6px'"] { display: none !important; }
+}
+
+/* ── GRANEL / BALDES ────────────────────────────────────────────── */
+/* Limitar descripción de baldes a 3 líneas en mobile */
+@media (max-width: 600px) {
+  .hardy-balde-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* ── BUTTONS ────────────────────────────────────────────────────── */
+/* Todos los botones de acción: nunca cortar texto */
+button, a[style*="AGREGA"], a[style*="Consultar"] {
+  white-space: nowrap !important;
+}
+
+/* ── BOTÓN AGREGAR: solo "+" en mobile ───────────────────────────── */
+.add-btn-short { display: none; }
+.add-btn-full  { display: inline; }
+@media (max-width: 600px) {
+  .add-btn-full  { display: none; }
+  .add-btn-short { display: inline; font-size: 18px; font-weight: 700; line-height: 1; }
+  .hardy-add-btn { padding: 10px 16px !important; }
+}
+
+/* ── SECCIÓN ENVÍOS ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  /* La grid de envíos apila */
+  section [style*="gridTemplateColumns: '1fr 1fr'"][style*="gap: '60px'"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+/* ── ENVÍOS GRID ──────────────────────────────────────────────────── */
+.hardy-envios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+@media (max-width: 900px) { .hardy-envios-grid { grid-template-columns: 1fr !important; gap: 32px !important; } }
+
+/* ── TIENDA GRID 4×4 ────────────────────────────────────────────── */
+.hardy-tienda-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+@media (max-width: 900px) { .hardy-tienda-grid { grid-template-columns: 1fr 1fr !important; gap: 2px !important; } }
+@media (max-width: 500px) { .hardy-tienda-grid { grid-template-columns: 1fr !important; } }
